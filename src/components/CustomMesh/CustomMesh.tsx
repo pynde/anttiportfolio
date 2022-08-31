@@ -62,7 +62,7 @@ const CustomMesh: FC<CustomMeshProps> = (props) => {
         <ambientLight intensity={0.2} />
         <OrbitControls></OrbitControls>
         <group {...props} dispose={null} onClick={() => setLightOn(!isLightOn) }>
-        <group position={[0, 1, 0]} scale={0.17}>
+        <group position={[0, 1.4, 0]} scale={0.17}>
         <pointLight
           intensity={0.02}
           decay={2}
