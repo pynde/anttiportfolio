@@ -1,0 +1,14 @@
+@use '../../App.scss' as app;
+
+.ThreeDee {
+    canvas {
+        height: 350px;
+        width: 350px;
+        background-color: rgba(app.$lightElement, 0.05);
+        border-radius: 1em;
+        margin-bottom: 10px;
+    }
+    #hints{
+        @include app.flexCenter;
+    }
+}

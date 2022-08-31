@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 401 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-1801,0)">
+        <g id="viestinta" transform="matrix(1,0,0,1,451.333,0)">
+            <rect x="1350" y="0" width="400" height="400" style="fill:none;"/>
+            <g transform="matrix(1,0,0,1,15,8)">
+                <path d="M1697,164.88C1697,106.995 1650.01,60 1592.12,60L1477.88,60C1420,60 1373,106.995 1373,164.88C1373,222.765 1420,269.76 1477.88,269.76L1484.84,269.76L1449.01,324L1526.69,269.76L1592.12,269.76C1650.01,269.76 1697,222.765 1697,164.88Z" style="fill:none;stroke:black;stroke-width:10px;"/>
+            </g>
+        </g>
+    </g>
+</svg>

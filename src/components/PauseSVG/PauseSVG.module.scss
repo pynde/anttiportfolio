@@ -1,0 +1,17 @@
+@use '../MusicPlayer/MusicPlayer.module.scss' as MP;
+
+.PauseSVG {
+    width: MP.$ppWidth;
+    height: MP.$ppHeight;
+    position: absolute;
+}
+.pause {
+        transition: bottom 0.2s;
+        bottom: 50%;
+        transform: translateY(50%);
+    }
+.play {
+        transition: bottom 0.2s;
+        transform: translateY(50%);
+        bottom: -100%;
+    }

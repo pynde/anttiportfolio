@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 401 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-450,0)">
+        <g id="koulutus" transform="matrix(1,0,0,1,345.333,-96)">
+            <rect x="105" y="96" width="400" height="400" style="fill:none;"/>
+            <g transform="matrix(1,0,0,1,104.744,94.9169)">
+                <path d="M200.256,117.826C259.834,77.217 319.417,62.02 379,68L379,300C319.506,296.618 260.013,315.286 200.512,349.704L200.512,350L200.256,349.852L200,350L200,349.704C140.499,315.286 81.006,296.618 21.512,300L21.512,68C81.095,62.02 140.678,77.217 200.256,117.826Z" style="fill:none;stroke:black;stroke-width:10px;"/>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,13 @@
+@use '../../App.scss' as app;
+
+.Texts {
+    text-align: justify;
+    padding: 0 40px 0 40px;
+    color: white;
+
+    code {
+        @include app.redHighlight(1);
+        padding: 5px;
+        border-radius: 0.2em;
+    }
+}

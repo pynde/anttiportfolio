@@ -1,0 +1,32 @@
+@use '../../App.scss' as app;
+
+$navHeight : 100px;
+
+.Nav {
+    @include app.basicColor;
+    height: $navHeight;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.232);
+
+    .headerContainer {
+        @include app.flexCenter;
+        flex-direction: row;;
+        width: fit-content;
+        height: 100%;
+        padding-left: 30px;
+        margin: 0;
+
+        img {
+            height: 70%;
+            padding: 0 10px 0 10px;
+            margin-right: 20px;
+            background-color: black;
+        }
+        div {
+            font-family: 'League Spartan', 'Poppins', 'Arial';
+            font-weight: 100;
+            font-size: 1.3em;
+        }
+
+    }
+}

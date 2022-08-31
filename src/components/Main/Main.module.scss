@@ -1,0 +1,25 @@
+
+@use '../../App.scss' as app;
+@use '../Nav/Nav.module.scss' as nav;
+
+
+.Main {
+@include app.basicColor;
+display: flex;
+justify-content: flex-start;
+flex-direction: column;
+text-align: center;
+position: relative;
+
+a {
+    background-color: white;
+    color: black;
+    padding: 2px 6px 2px 6px;
+    cursor: pointer;
+    &:hover {
+        background-color: app.$primaryElement;
+        color: white;
+    }
+}
+
+}

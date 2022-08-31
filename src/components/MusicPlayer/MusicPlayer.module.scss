@@ -1,0 +1,121 @@
+@use '../../App.scss' as app;
+
+$ppWidth : 30px;
+$ppHeight : 30px;
+$playerPadding: 30px;
+
+.MusicPlayer {
+    @include app.flexCenter;
+    height: 200px;
+    #playerContainer {
+        height: calc(100% - $playerPadding);
+        padding: $playerPadding;
+        display: block;
+        border-radius: 1em;;
+        background-color: app.$primaryElement;
+        @include app.flexCenter;
+        box-shadow: app.$boxShadow;
+        color: black;
+
+        #timer {
+            display: block;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.639);
+        }
+
+        .imageContainer {
+            position: relative;
+            border-radius: 1em;
+            overflow: hidden;
+            height: 100%;
+            margin-right: 20px;
+        }
+    
+        #navigateContainer {
+            max-width: 200px;
+            height: 100%;
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            grid-template-columns: 1.2fr 1fr 1.2fr;
+            grid-template-rows: 0.2fr 1fr;
+            
+        }
+
+        #title {
+            position: relative;
+            display: block;
+            text-align: center;
+            grid-column: span 3;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            &::after {
+                content: '';
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: linear-gradient(to right, app.$primaryElement 0.5%, transparent, app.$primaryElement 99.5%);
+            }
+            
+            span {
+                display: block;
+                position: absolute;
+                padding: 0;
+                transform: translateX(-50%);
+                animation: titleAnim 10s infinite linear reverse;
+                font-weight: bolder;
+                
+            }
+        }
+    
+        #playPause {
+            position: relative;
+            color: black;
+            background-color: app.$primaryElement;
+            padding: 20px;
+            margin: 0;
+            border-radius: 50%;
+            overflow: hidden;
+            width: $ppWidth;
+            height: $ppHeight;
+            &:hover {
+                background-color: app.$primaryElement_hover;
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    svg {
+        fill: app.$accentElement;
+    }
+
+    #cstIframe {
+        background-color: none;
+        display: none;
+    }
+
+
+    img {
+        display: block;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    
+}
+
+@keyframes titleAnim {
+    0% {
+        left: -50%;
+    }
+    100% {
+        left: 150%;
+    }
+
+}

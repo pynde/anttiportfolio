@@ -1,0 +1,18 @@
+@use '../../App.scss' as app;
+
+.Nutshell {
+    background-color: rgba(app.$primaryElement, 0.4);
+    border-radius: app.$primaryBorderRadius;
+    padding: 20px;
+    font-family: 'Kalam', Arial, Helvetica, sans-serif;
+    ul{
+        padding: 0;
+        list-style: none;
+    }
+    li {
+        margin-bottom: 10px;
+        background-color: rgba(white, 0.05);
+        padding: 10px;
+        border-radius: calc(app.$primaryBorderRadius / 2);
+    }
+}

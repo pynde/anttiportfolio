@@ -1,0 +1,22 @@
+@use '../MusicPlayer/MusicPlayer.module.scss' as MP;
+
+.PlaySVG {
+    width: MP.$ppWidth;
+    height: MP.$ppHeight;
+    display: block;
+    position: absolute;
+    
+
+}
+.play {
+        transition: top 0.3s;
+        top: 50%;
+        left: 30%;
+        transform: translateY(-50%);
+    }
+.pause {
+        transition: top 0.3s;
+        left: 30%;
+        top: -100%;
+        transform: translateY(-50%);
+    }
