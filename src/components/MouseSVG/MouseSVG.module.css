@@ -1,0 +1,61 @@
+.MouseSVG {
+  margin-left: 10px;
+  display: block;
+}
+
+.MouseSVG svg {
+  width: 50px;
+  height: 50px;
+}
+
+.MouseSVG #leftClick {
+  -webkit-animation: toggleAnim 5s infinite;
+          animation: toggleAnim 5s infinite;
+  -webkit-animation-delay: 0.33s;
+          animation-delay: 0.33s;
+}
+
+.MouseSVG #rightClick {
+  -webkit-animation: toggleAnim 5s infinite;
+          animation: toggleAnim 5s infinite;
+  -webkit-animation-delay: 0.99s;
+          animation-delay: 0.99s;
+}
+
+.MouseSVG #scroll {
+  -webkit-animation: toggleAnim 5s infinite;
+          animation: toggleAnim 5s infinite;
+  -webkit-animation-delay: 0.66s;
+          animation-delay: 0.66s;
+}
+
+@-webkit-keyframes toggleAnim {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.2;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes toggleAnim {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.2;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=MouseSVG.module.css.map */
