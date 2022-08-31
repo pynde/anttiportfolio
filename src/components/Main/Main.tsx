@@ -26,6 +26,18 @@ const Main: FC<MainProps> = () => {
       <Texts id='3d'/>
       <ThreeDee/>
     </Container>
+    <Container title='Image' id='image'>
+
+    </Container>
+    <Container title='Education' id='education'>
+
+    </Container>
+    <Container title='Programming' id='programming'>
+
+    </Container>
+    <Container title='Communications' id='communications'>
+
+    </Container>
     </>
     :
     <Outlet/>
