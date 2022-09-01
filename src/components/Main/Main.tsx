@@ -31,13 +31,13 @@ const Main: FC<MainProps> = () => {
       <ProgressTile/>
     </Container>
     <Container title='Education' id='education'>
-
+      <ProgressTile/>
     </Container>
     <Container title='Programming' id='programming'>
-      
+      <ProgressTile/>
     </Container>
-    <Container title='Communications' id='communications'>
-      
+    <Container title='About me' id='communications'>
+      <ProgressTile/>
     </Container>
     </>
     :
