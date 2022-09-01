@@ -1,0 +1,37 @@
+@use '../../App.scss' as app;
+
+.ProgressTile {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr auto;
+        overflow: hidden;
+
+        @for $tile from 1 through 4 {
+            div:nth-child(1n + #{$tile}) {
+                background-color: lighten(app.$redColor, 5%);
+                width: 100px;
+                height: 100px;
+                margin: 2px;
+                border-radius: 0.7em;
+                animation: tileAnim 2s ($tile * .5s) infinite alternate-reverse;
+            }
+        }
+
+    code {
+        margin-top: 20px;
+        grid-column: 1 / span 2;
+    }
+    }
+            
+    
+@keyframes tileAnim {
+        0% { 
+            opacity: 1;
+        }
+        100% { 
+            opacity: 0;
+             }
+    }

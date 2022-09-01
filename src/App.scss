@@ -6,6 +6,7 @@ $primaryElement_hover : rgb(55, 45, 0);
 $accentElement : rgb(255, 220, 92);
 $lightElement : rgb(206, 178, 0);
 $lightElement_active: rgb(255, 221, 0);
+$redColor : rgb(57, 0, 20);
 $textLight : white;
 $textDark : black;
 $gradientBg : linear-gradient(45deg, $darkBg, rgb(20, 17, 6));
@@ -14,7 +15,7 @@ $boxShadow : 0 0 10px white;
 $primaryBorderRadius: 1em;
 
 @mixin redHighlight($opacity) {
-  background-color : rgba(57, 0, 20, $opacity);
+  background-color : rgba($redColor, $opacity);
 }
 
 @mixin flexCenter {

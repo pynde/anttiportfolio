@@ -3,6 +3,7 @@ import { Outlet, Pathname, useLocation } from 'react-router-dom';
 import Aani from '../Aani/Aani';
 import Container from '../Container/Container';
 import Nutshell from '../Nutshell/Nutshell';
+import ProgressTile from '../ProgressTile/ProgressTile';
 import RadialMenu from '../RadialMenu/RadialMenu';
 import Texts from '../Texts/Texts';
 import ThreeDee from '../ThreeDee/ThreeDee';
@@ -27,16 +28,16 @@ const Main: FC<MainProps> = () => {
       <ThreeDee/>
     </Container>
     <Container title='Image' id='image'>
-
+      <ProgressTile/>
     </Container>
     <Container title='Education' id='education'>
 
     </Container>
     <Container title='Programming' id='programming'>
-
+      
     </Container>
     <Container title='Communications' id='communications'>
-
+      
     </Container>
     </>
     :
