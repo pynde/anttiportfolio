@@ -11,6 +11,7 @@ const RadialMenu: FC<RadialMenuProps> = () => {
   const radialMenuDiv = useRef<HTMLDivElement>(null);
   const scrolledWindow = useContext(ScrollContext);
   const [menuSizePosition, setMenuSizePosition] = useState<string>();
+  const [textVisible, setTextVisible] = useState<string>('visible');
   const placeMenu = () => {
     
   }
@@ -19,11 +20,13 @@ const RadialMenu: FC<RadialMenuProps> = () => {
     console.log(radialMenuDiv.current?.offsetHeight);
     
     if(!!radialMenuDiv.current?.offsetHeight) {
-      if (scrolledWindow.scrolledY >= radialMenuDiv.current.offsetHeight / 3) {
+      if (scrolledWindow.scrolledY >= 1) {
         setMenuSizePosition(styles.scrolled);
+        setTextVisible('none');
       }
-      else if (scrolledWindow.scrolledY < radialMenuDiv.current.offsetHeight / 3) {
+      else if (scrolledWindow.scrolledY < 1) {
         setMenuSizePosition(styles.notScrolled);
+        setTextVisible('block');
       }
     }
   });
@@ -34,6 +37,7 @@ const RadialMenu: FC<RadialMenuProps> = () => {
 
   return (  
     <div className={`${styles.RadialMenu} ${menuSizePosition}`} onScroll={placeMenu} ref={radialMenuDiv}>
+      <h2 style={{ display: textVisible}}>Made with React, Sass, Affinity Designer, Blender and three.js. All components made from scratch.</h2>
       <div id={styles.menuContainer}>
         <ul>
           <li onClick={scrollToView}><div>Sound</div><img src={`${process.env.PUBLIC_URL}/images/aani.svg`} alt="Sound icon" /></li>
