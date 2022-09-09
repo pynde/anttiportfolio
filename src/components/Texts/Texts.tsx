@@ -41,7 +41,8 @@ const getText = () : ReactNode => {
       <p>
         I have had an interest in design and image alteration since my early teens. 
         I consider my forte to be in the post production stage and vector design, 
-        but I enjoy shooting still and video as well.
+        but I enjoy shooting still and video as well. I had an opportunity to work as
+        a graphic designer for a board game at our own little company called Common Earth ny.
       </p>,
       <p>
         <code>Affinity Designer</code> is my go-to on vector design; <code>Affinity Photo</code> on editing image and <code>DaVinci Resolve</code> on video editing. 
