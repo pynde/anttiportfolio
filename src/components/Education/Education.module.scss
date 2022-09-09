@@ -1,0 +1,13 @@
+@use '../../App.scss' as app;
+
+.Education {
+    .Item {
+       height: 100px;
+        width: 200px; 
+        @include app.flexCenter;
+    }
+    img {
+        width: 60%;
+        height: 60%;;
+    }
+}

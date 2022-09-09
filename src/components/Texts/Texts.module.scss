@@ -4,10 +4,15 @@
     text-align: justify;
     padding: 0 40px 0 40px;
     color: white;
-
+    max-height: 100%;
+    overflow: auto;
     code {
         @include app.redHighlight(1);
         padding: 5px;
         border-radius: 0.2em;
+    }
+    p {
+        margin-top: 0;
+        padding: 0;
     }
 }

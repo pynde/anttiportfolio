@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 import styles from './Container.module.scss';
 
@@ -8,17 +8,20 @@ interface ContainerProps {
   children?: ReactNode;
 }
 
-const Container: FC<ContainerProps> = (props : ContainerProps) => (
-  <div className={styles.Container} id={props.id}>
-    <div id={styles.decorationCont}>
-      <div className={styles.decoration}></div>
-      <h1>{ props.title }</h1>
-      <div className={styles.decoration}></div>
-    </div>
-    <div className={styles.gridCont}>
-        { props.children }
-    </div>
+const Container : FC<ContainerProps & React.RefAttributes<HTMLDivElement>> = React.forwardRef<HTMLDivElement, ContainerProps>((props, ref) => {
+
+  return(
+    <div className={`${styles.Container}`} id={props.id} ref={ref}>
+      <div id={styles.decorationCont}>
+        <div className={styles.decoration}></div>
+        <h1>{ props.title }</h1>
+        <div className={styles.decoration}></div>
+      </div>
+      <div className={styles.gridCont}>
+          { props.children }
+      </div>
   </div>
-);
+  )
+});
 
 export default Container;

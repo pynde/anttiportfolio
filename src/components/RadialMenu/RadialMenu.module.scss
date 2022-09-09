@@ -7,118 +7,121 @@ $liWidth : 80px;
 $liHeight : 80px;
 $ulRotate : 0deg;
 
-.RadialMenu {
-        @include app.flexCenter;
-        flex-direction: column;
-         min-height: calc(100vh - nav.$navHeight);
-         width: 100%;
-         position: sticky;
-         top: 0;
-         z-index: 10;
-         transition: width 0.4s;
-         overflow-x: hidden;
-        #menuContainer {
-            // height: 100%;
-            // width: 100%;
-            @include app.flexStart;
+.radialMenuCont {
+    height: calc(100vh - nav.$navHeight);
+    .RadialMenu {
+            @include app.flexCenter;
             flex-direction: column;
-            margin: 20px;
-        }
-        ul {
-            width: $radialMenuWidth;
-            height: $radialMenuHeight;
-            background-color: app.$primaryElement;
-            border-radius: 50%;
-            filter: app.$dropShadow;
-            padding: 0;
-            margin: 0;
-            transform: rotate($ulRotate);
-            transition: width height background-color 0.5s;
-            overflow: visible;
-            a, li {
-                width: $liWidth;
-                height: $liHeight;
-                background-color: rgba(255, 255, 255, 0.16);
+            //min-height: calc(100vh - nav.$navHeight);
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            transition: width 0.4s;
+            overflow-x: hidden;
+            #menuContainer {
+                // height: 100%;
+                // width: 100%;
+                @include app.flexStart;
+                flex-direction: column;
+                margin: 20px;
+            }
+            ul {
+                width: $radialMenuWidth;
+                height: $radialMenuHeight;
+                background-color: app.$primaryElement;
                 border-radius: 50%;
-                position: absolute;
-                list-style: none;
-                border: 1px solid app.$lightElement;
-                @include app.flexCenter;
-                transition: transform 0.5s;
-                img:hover {
-                    @include app.lightGlow;
-                    cursor: pointer;
-                }
-            }
-
-       
-        }
-       
-        
-        @for $i from 1 through 6 {
-            a:nth-child(#{$i}), li:nth-child(#{$i}) {
-                transform-origin: 200px;
-                top: calc(50% - $liHeight / 2);
-                transform: rotate(calc(360deg / 6 * $i)) translateX(50%);
-                img {
-                    display: inline-block;
-                    height: 80%;
-                    width:  80%;
-                    transform: rotate(calc(-360deg / 6 * $i));
-                }
-                div {
-                    font-size: 0.7em;
-                    color: rgb(255, 255, 255);
-                    //width: 80%;
-                    //height: 80%;
-                    transform: rotate(calc(360deg / 6 * $i - ($i * 120deg))) translateY(calc(($liHeight / -2) - 55%));
+                filter: app.$dropShadow;
+                padding: 0;
+                margin: 0;
+                transform: rotate($ulRotate);
+                transition: width height background-color 0.5s;
+                overflow: visible;
+                a, li {
+                    width: $liWidth;
+                    height: $liHeight;
+                    background-color: rgba(255, 255, 255, 0.16);
+                    border-radius: 50%;
                     position: absolute;
-                }
-            }
-            
-        }
-        
-        
-        
-}
-
-.scrolled {
-    transition: width 0.5s;
-    justify-content: end;
-    align-self: end;
-    width: fit-content;
-    ul {
-        background-color: rgba(0, 0, 0, 0);
-        height: 80vh;
-        width: fit-content;
-        padding-right: 40px;;
-        display: grid;
-        justify-content: center;
-        grid-template-rows: repeat(6, 1fr);
-        @for $i from 1 through 6 {
-            li:nth-child(#{$i}) {
-                width: calc($liWidth * 0.8);
-                height: calc($liHeight * 0.8);
-                position: static;
-                transform-origin: center;
-                transform: rotate(0deg);
-                img {
-                    transform: rotate(0deg);
-                }
-                div {
-                    font-size: 0.7em;
-                    color: rgb(255, 255, 255);
-                    transform-origin: right;
-                    right: 110%;
-                    transform: rotate(0deg);
-                    display: none;
-                    
+                    list-style: none;
+                    border: 1px solid app.$lightElement;
+                    @include app.flexCenter;
+                    transition: transform 0.5s;
+                    img:hover {
+                        @include app.lightGlow;
+                        cursor: pointer;
                     }
                 }
-            
-            }
 
-        }
-    
+        
+            }
+        
+            
+            @for $i from 1 through 6 {
+                a:nth-child(#{$i}), li:nth-child(#{$i}) {
+                    transform-origin: 200px;
+                    top: calc(50% - $liHeight / 2);
+                    transform: rotate(calc(360deg / 6 * $i)) translateX(50%);
+                    img {
+                        display: inline-block;
+                        height: 80%;
+                        width:  80%;
+                        transform: rotate(calc(-360deg / 6 * $i));
+                    }
+                    div {
+                        font-size: 0.7em;
+                        color: rgb(255, 255, 255);
+                        //width: 80%;
+                        //height: 80%;
+                        transform: rotate(calc(360deg / 6 * $i - ($i * 120deg))) translateY(calc(($liHeight / -2) - 55%));
+                        position: absolute;
+                    }
+                }
+                
+            }
+            
+            
+            
     }
+
+    .scrolled {
+        transition: width 0.5s;
+        justify-content: end;
+        align-self: end;
+        width: fit-content;
+        ul {
+            background-color: rgba(0, 0, 0, 0);
+            height: 80vh;
+            width: fit-content;
+            padding-right: 40px;;
+            display: grid;
+            justify-content: center;
+            grid-template-rows: repeat(6, 1fr);
+            @for $i from 1 through 6 {
+                li:nth-child(#{$i}) {
+                    width: calc($liWidth * 0.8);
+                    height: calc($liHeight * 0.8);
+                    position: static;
+                    transform-origin: center;
+                    transform: rotate(0deg);
+                    img {
+                        transform: rotate(0deg);
+                    }
+                    div {
+                        font-size: 0.7em;
+                        color: rgb(255, 255, 255);
+                        transform-origin: right;
+                        right: 110%;
+                        transform: rotate(0deg);
+                        display: none;
+                        
+                        }
+                    }
+                
+                }
+
+            }
+        
+        }
+}
 

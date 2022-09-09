@@ -21,5 +21,9 @@ a {
         color: white;
     }
 }
+.scrolled {
+    height: 50vh;
+    transition: height 0.5s;
+}
 
 }

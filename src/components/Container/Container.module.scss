@@ -1,16 +1,18 @@
 @use '../../App.scss' as app;
 
+$decorationContHeight : 80px;
+
 .Container {
     margin: 0;
     padding: 0;
     display: block;
     background-color: app.$lightBg;
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     @include app.lightGlow;
 
     h1 {
-        margin: 10px;
+        margin: 0;
     }
 
     .gridCont {
@@ -18,9 +20,11 @@
         grid-template-columns: 1fr 1fr;
         align-items: center;
         justify-items: center;
+        height: calc(100% - $decorationContHeight)
     }
     #decorationCont {
         @include app.flexCenter;
+        height: $decorationContHeight;
         .decoration{
         width: 30px;
         height: 2px;
