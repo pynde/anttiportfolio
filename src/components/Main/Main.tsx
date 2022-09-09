@@ -48,15 +48,23 @@ const Main: FC<MainProps> = () => {
     }
   }
   
-
-
-
+  const scrollToView = (elementString : string) => {  
+      if(!!(soundContainerRef.current && threeDeeContainerRef.current && imageContainerRef.current && educationContainerRef.current)) {
+        const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef];
+        refs.forEach(e => {
+          if(e.current?.id == elementString ){
+              e.current.scrollIntoView();
+          }
+        })
+      }
+    
+  }
 
 
   return (  
   <div className={styles.Main}>
     { pathname === '/' ? <>
-    <RadialMenu ref={radialMenuRef} />
+    <RadialMenu scrollToView={e => scrollToView(e)} ref={radialMenuRef} />
     <Container ref={soundContainerRef} title='Sound' id='sound'>
       { scrolledState === 'sound' ?
       <>
@@ -103,7 +111,7 @@ const Main: FC<MainProps> = () => {
     <Container title='Programming' id='programming'>
       <ProgressTile/>
     </Container>
-    <Container title='About me' id='communications'>
+    <Container title='About me' id='about-me'>
       <ProgressTile/>
     </Container> */}
     </>
