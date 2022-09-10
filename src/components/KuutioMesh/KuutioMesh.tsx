@@ -39,7 +39,7 @@ const KuutioMesh: FC<KuutioMeshProps> = (props : KuutioMeshProps) => {
         <OrbitControls/>
         <ambientLight intensity={1} />
         <directionalLight intensity={2} position={[0,10,5]}/>
-        <mesh 
+        <mesh
           position={[0,0,0]}
           name="kubiikkeli"
           castShadow

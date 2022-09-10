@@ -11,4 +11,16 @@
     #hints{
         @include app.flexCenter;
     }
+    button {
+        height: 50px;
+        background-color: app.$primaryElement;
+        color: white;
+        border-radius: 1em;
+        border: solid app.$darkBg 3px;
+        padding: 10px;
+        &:hover {
+            color: app.$darkBg;
+            background-color: white;
+        }
+    }
 }
