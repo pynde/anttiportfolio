@@ -1,4 +1,3 @@
-import e from 'express';
 import React, { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Loading from '../Loading/Loading';
 import PauseSVG from '../PauseSVG/PauseSVG';
@@ -34,8 +33,6 @@ const MusicPlayer: FC<MusicPlayerProps> = (props: MusicPlayerProps) => {
     script_.async = true;
     document.body.appendChild(script_);
     firstRender.current = false;
-    
-
     return () => {
       document.body.removeChild(script_)
       clearPlayTime();
@@ -62,7 +59,6 @@ const MusicPlayer: FC<MusicPlayerProps> = (props: MusicPlayerProps) => {
         }
         else {     
           clearInterval(playTimeRef.current);
-          console.log('esle');
           playTemp = false;
           widget.current.getDuration((ms : number) => setPlayTime(ms)); setPlay({playing: false, playGUI: 'play'});  playTimeRef.current = undefined;
         }
@@ -94,13 +90,28 @@ const MusicPlayer: FC<MusicPlayerProps> = (props: MusicPlayerProps) => {
   }
 
   const setWidget = () => {
+    let loaded = widgetLoaded;
+    let tries = 0;
     if(iframeRef.current)
     widget.current = SC.Widget(iframeRef.current.id);
-    widget.current.bind(SC.Widget.Events.READY, () => {
-      widget.current.getDuration((m: number) => setPlayTime(m));
-      widget.current.getCurrentSound((api_object: any) => setTitle(api_object['title']));
-      setWidgetLoaded(true);
-    })
+    const interval = setInterval(() => {
+      tries = tries++;
+      console.log('Fetching SoundCloud Widget API');
+      if(!loaded && tries < 3) {
+        widget.current.bind(SC.Widget.Events.READY, () => {
+        widget.current.getDuration((m: number) => setPlayTime(m));
+        widget.current.getCurrentSound((api_object: any) => setTitle(api_object['title']));
+        loaded = true;
+        setWidgetLoaded(true);
+        })
+      }
+      else {
+        console.log('interval cleared');
+        
+        clearInterval(interval);
+      }
+    }, 2000);
+       
   }
 
 
