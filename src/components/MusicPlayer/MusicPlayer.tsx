@@ -97,7 +97,7 @@ const MusicPlayer: FC<MusicPlayerProps> = (props: MusicPlayerProps) => {
     const interval = setInterval(() => {
       tries = tries++;
       console.log('Fetching SoundCloud Widget API');
-      if(!loaded && tries < 3) {
+      if(!loaded && tries < 3 && !!widget.current) {
         widget.current.bind(SC.Widget.Events.READY, () => {
         widget.current.getDuration((m: number) => setPlayTime(m));
         widget.current.getCurrentSound((api_object: any) => setTitle(api_object['title']));
@@ -106,8 +106,7 @@ const MusicPlayer: FC<MusicPlayerProps> = (props: MusicPlayerProps) => {
         })
       }
       else {
-        console.log('interval cleared');
-        
+        console.log('Interval cleared');
         clearInterval(interval);
       }
     }, 2000);
