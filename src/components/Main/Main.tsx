@@ -71,7 +71,7 @@ const Main: FC<MainProps> = () => {
       <>
       <Texts id='sound'/>
       <Aani/>
-      <Nutshell items={['Mikki', 'Minni', 'Hessu']}/>
+      {/* <Nutshell items={['Mikki', 'Minni', 'Hessu']}/> */}
       </>
       : <div>I'm saving your CPU. Please scroll.</div>
       }

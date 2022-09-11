@@ -74,7 +74,7 @@ const getText = () : ReactNode => {
         <p>
           Getting computer science as a minor subject in university is one of the better decisions I have ever made. 
           I quickly realized that I especially love creating user interfaces. I feel deep satisfaction when an interface
-          works the way I intend it to.
+          works the way I intend it to. I have one public application online - besides my portfolio - at <a href="https://todistusvalinta.fi">https://todistusvalinta.fi</a>.
         </p>,
         <p>
           So far I have been working with <code>JavaScript</code>, <code>TypeScript</code>, 
