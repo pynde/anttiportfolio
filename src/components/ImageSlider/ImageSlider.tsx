@@ -66,7 +66,7 @@ const unBlur = () => {
     <div id={styles.leftArrowCont} className={styles.ArrowCont} onClick={() => setImage(-1)}>
       <img id={styles.leftArrow} src={`${process.env.PUBLIC_URL}/images/nuoli.svg`} alt="Previous"/>
     </div>
-    <div id={styles.mask} style={{maskImage: splashMask, maskComposite: 'add'}} onClick={setImageSize}>
+    <div id={styles.mask} style={{WebkitMask: splashMask, maskImage: splashMask, maskComposite: 'add'}} onClick={setImageSize}>
       <img ref={galleryRef} className={styles.Gallery} src={imgUrlArray[imageIndex]} alt="Gallery" onLoad={unBlur}/>
       </div>
     <div id={styles.rightArrowCont} className={styles.ArrowCont} onClick={() => setImage(1)}>
