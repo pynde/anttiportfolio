@@ -6,6 +6,7 @@ import Container from '../Container/Container';
 import Education from '../Education/Education';
 import ImageSlider from '../ImageSlider/ImageSlider';
 import Nutshell from '../Nutshell/Nutshell';
+import Programming from '../Programming/Programming';
 import ProgressTile from '../ProgressTile/ProgressTile';
 import RadialMenu from '../RadialMenu/RadialMenu';
 import Texts from '../Texts/Texts';
@@ -106,11 +107,11 @@ const Main: FC<MainProps> = () => {
       : <div>I'm saving your CPU. Please scroll.</div>
       }
     </Container>
-    
-    {/*
     <Container title='Programming' id='programming'>
-      <ProgressTile/>
+      <Texts id='programming'/>
+      <Programming/>
     </Container>
+    {/*
     <Container title='About me' id='about-me'>
       <ProgressTile/>
     </Container> */}

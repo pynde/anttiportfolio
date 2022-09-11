@@ -69,6 +69,21 @@ const getText = () : ReactNode => {
         With <code>computer studies</code> I had more a of a practical approach: to learn programming.
       </p>
     ]);
+    
+    case 'programming' : return([
+        <p>
+          Getting computer science as a minor subject in university is one of the better decisions I have ever made. 
+          I quickly realized that I especially love creating user interfaces. I feel deep satisfaction when an interface
+          works the way I intend it to.
+        </p>,
+        <p>
+          So far I have been working with <code>JavaScript</code>, <code>TypeScript</code>, 
+          <code>HTML5</code>, <code>CSS3</code>, <code>Sass</code>, <code>Java</code>, 
+          <code>Android</code>, <code>React</code>, <code>Node.js</code> and <code>Three.js</code>. 
+          All the components on this website have been designed and built by me. You can find my GitHub
+          at github.com/pynde.
+        </p>
+    ]);
 
     return <></>
   }
