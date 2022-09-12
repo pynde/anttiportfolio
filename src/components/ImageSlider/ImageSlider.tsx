@@ -14,10 +14,14 @@ const ImageSlider: FC<ImageSliderProps> = () => {
   const galleryRef = useRef<HTMLImageElement>(null);
   const imgUrlArray : string[] = [
     "https://iili.io/6eIg8Q.jpg",
+    "https://iili.io/PEAfBs.png",
     "https://iili.io/6UUQpt.jpg",
+    "https://iili.io/PEvzhP.png",
     "https://iili.io/6UUpCG.jpg",
     "https://iili.io/6UU64R.jpg",
     "https://iili.io/6UgJ3l.jpg",
+    "https://iili.io/PGfer7.png"
+
   ]
 
   useEffect(() => {
