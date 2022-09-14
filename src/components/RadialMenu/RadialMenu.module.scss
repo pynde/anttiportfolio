@@ -9,10 +9,10 @@ $ulRotate : 0deg;
 
 .radialMenuCont {
     height: calc(100vh - nav.$navHeight);
+    position: relative;
     .RadialMenu {
             @include app.flexCenter;
             flex-direction: column;
-            //min-height: calc(100vh - nav.$navHeight);
             width: 100%;
             position: sticky;
             top: 0;
@@ -86,17 +86,19 @@ $ulRotate : 0deg;
 
     .scrolled {
         transition: width 0.5s;
-        justify-content: end;
-        align-self: end;
+        position: fixed;
+        right: 0;
+        top: 0;
         width: fit-content;
         ul {
-            background-color: rgba(0, 0, 0, 0);
+            background-color: transparent;
             height: 80vh;
             width: fit-content;
-            padding-right: 40px;;
+            padding-right: 20px;
             display: grid;
             justify-content: center;
             grid-template-rows: repeat(6, 1fr);
+            border-radius: 0;
             @for $i from 1 through 6 {
                 li:nth-child(#{$i}) {
                     width: calc($liWidth * 0.8);

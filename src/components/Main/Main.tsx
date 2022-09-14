@@ -1,4 +1,4 @@
-import React, { createRef, FC, ReactElement, useContext, useEffect, useRef, useState } from 'react';
+import React, { createRef, FC, ReactElement, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { Outlet, Pathname, useLocation } from 'react-router-dom';
 import { ScrollContext } from '../../App';
 import Aani from '../Aani/Aani';
@@ -25,33 +25,31 @@ const Main: FC<MainProps> = () => {
   const threeDeeContainerRef = useRef<HTMLDivElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
   const educationContainerRef = useRef<HTMLDivElement>(null);
+  const programmingContainerRef = useRef<HTMLDivElement>(null);
   const radialMenuRef = useRef<HTMLDivElement>(null);
   const prevScrollRef = useRef<number>(0);
 
 
   // Show components based on scrolled user position 
   useEffect(() => {
-    console.log(scrollContext.scrolledY + ' pixels scrolled');
-
-      checkScrolledState(radialMenuRef.current);
-      checkScrolledState(soundContainerRef.current);
-      checkScrolledState(threeDeeContainerRef.current);
-      checkScrolledState(imageContainerRef.current);
-      checkScrolledState(educationContainerRef.current);
-    
+  checkScrolledState()
   }, [scrollContext.scrolledY]);
 
-  const checkScrolledState = (refObject : HTMLDivElement | null) => {
-    if(!!refObject) {
-      if(refObject.getBoundingClientRect().top < refObject.offsetHeight / 2 && refObject.getBoundingClientRect().bottom < refObject.offsetHeight * 1.5 ) {
-        setScrolledState(refObject.id);
+  const checkScrolledState = () => {
+    const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef];
+    refs.forEach((ref) => {
+      if(!!ref.current) {
+      if(ref.current.getBoundingClientRect().top < ref.current.offsetHeight / 2 && ref.current.getBoundingClientRect().bottom < ref.current.offsetHeight * 1.5 ) {
+        setScrolledState(ref.current.id);
       }
     }
+    })
+    
   }
   
   const scrollToView = (elementString : string) => {  
       if(!!(soundContainerRef.current && threeDeeContainerRef.current && imageContainerRef.current && educationContainerRef.current)) {
-        const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef];
+        const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef];
         refs.forEach(e => {
           if(e.current?.id == elementString ){
               e.current.scrollIntoView();
@@ -107,10 +105,17 @@ const Main: FC<MainProps> = () => {
       : <div>I'm saving your CPU. Please scroll.</div>
       }
     </Container>
-    <Container title='Programming' id='programming'>
+    <Container ref={programmingContainerRef} title='Programming' id='programming'>
+      {
+      scrolledState === 'programming' ?
+      <>
       <Texts id='programming'/>
       <Programming/>
+      </>
+      : <div>I'm saving your CPU. Please scroll.</div>
+      }
     </Container>
+      
     {/*
     <Container title='About me' id='about-me'>
       <ProgressTile/>
