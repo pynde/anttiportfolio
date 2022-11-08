@@ -84,6 +84,17 @@ const Main: FC<MainProps> = () => {
       }
     </Container>
      
+    <Container ref={educationContainerRef} title='Education' id='education'>
+      {
+      scrolledState === 'education' ?
+      <>
+      <Texts id='education'/>
+      <Education />
+      </>
+      : <div>I'm saving your CPU. Please scroll.</div>
+      }
+    </Container>
+
     <Container ref={imageContainerRef} title='Image' id='image'>
       {
       scrolledState === 'image' ?
@@ -95,16 +106,7 @@ const Main: FC<MainProps> = () => {
       }
     </Container>
     
-    <Container ref={educationContainerRef} title='Education' id='education'>
-      {
-      scrolledState === 'education' ?
-      <>
-      <Texts id='education'/>
-      <Education />
-      </>
-      : <div>I'm saving your CPU. Please scroll.</div>
-      }
-    </Container>
+    
     <Container ref={programmingContainerRef} title='Programming' id='programming'>
       {
       scrolledState === 'programming' ?
