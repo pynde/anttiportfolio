@@ -39,8 +39,8 @@ const RadialMenu: FC<RadialMenuProps & React.RefAttributes<HTMLDivElement>> = Re
           <ul>
             <li onClick={() => props.scrollToView('sound')}><div>Sound</div><img src={`${process.env.PUBLIC_URL}/images/aani.svg`} alt="Sound icon" /></li>
             <li onClick={() => props.scrollToView('3d')}><div>3D</div><img src={`${process.env.PUBLIC_URL}/images/3D.svg`} alt="3D icon" /></li>
-            <li onClick={() => props.scrollToView('education')}><div>Education</div><img src={`${process.env.PUBLIC_URL}/images/koulutus.svg`} alt="Education icon" /></li>
             <li onClick={() => props.scrollToView('image')}><div>Image</div><img src={`${process.env.PUBLIC_URL}/images/kuva.svg`} alt="Image icon" /></li>
+            <li onClick={() => props.scrollToView('education')}><div>Education</div><img src={`${process.env.PUBLIC_URL}/images/koulutus.svg`} alt="Education icon" /></li>
             <li onClick={() => props.scrollToView('programming')}><div>Programming</div><img src={`${process.env.PUBLIC_URL}/images/ohjelmointi.svg`} alt="Programming icon" /></li>
             <li onClick={() => props.scrollToView('about-me')} style={{opacity: 0.5}}><div>About me</div><img src={`${process.env.PUBLIC_URL}/images/viestinta.svg`} alt="Communications icon" /></li>
           </ul>

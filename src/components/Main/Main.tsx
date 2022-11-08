@@ -5,9 +5,7 @@ import Aani from '../Aani/Aani';
 import Container from '../Container/Container';
 import Education from '../Education/Education';
 import ImageSlider from '../ImageSlider/ImageSlider';
-import Nutshell from '../Nutshell/Nutshell';
 import Programming from '../Programming/Programming';
-import ProgressTile from '../ProgressTile/ProgressTile';
 import RadialMenu from '../RadialMenu/RadialMenu';
 import Texts from '../Texts/Texts';
 import ThreeDee from '../ThreeDee/ThreeDee';
@@ -41,10 +39,10 @@ const Main: FC<MainProps> = () => {
       if(!!ref.current) {
       if(ref.current.getBoundingClientRect().top < ref.current.offsetHeight / 2 && ref.current.getBoundingClientRect().bottom < ref.current.offsetHeight * 1.5 ) {
         setScrolledState(ref.current.id);
+        console.log(ref.current.id);
       }
     }
     })
-    
   }
   
   const scrollToView = (elementString : string) => {  
@@ -56,7 +54,6 @@ const Main: FC<MainProps> = () => {
           }
         })
       }
-    
   }
 
 
@@ -69,7 +66,6 @@ const Main: FC<MainProps> = () => {
       <>
       <Texts id='sound'/>
       <Aani/>
-      {/* <Nutshell items={['Mikki', 'Minni', 'Hessu']}/> */}
       </>
       : <div>I'm saving your CPU. Please scroll.</div>
       }
@@ -83,18 +79,6 @@ const Main: FC<MainProps> = () => {
       : <div>I'm saving your CPU. Please scroll.</div>
       }
     </Container>
-     
-    <Container ref={educationContainerRef} title='Education' id='education'>
-      {
-      scrolledState === 'education' ?
-      <>
-      <Texts id='education'/>
-      <Education />
-      </>
-      : <div>I'm saving your CPU. Please scroll.</div>
-      }
-    </Container>
-
     <Container ref={imageContainerRef} title='Image' id='image'>
       {
       scrolledState === 'image' ?
@@ -105,8 +89,16 @@ const Main: FC<MainProps> = () => {
       : <div>I'm saving your CPU. Please scroll.</div>
       }
     </Container>
-    
-    
+    <Container ref={educationContainerRef} title='Education' id='education'>
+      {
+      scrolledState === 'education' ?
+      <>
+      <Texts id='education'/>
+      <Education />
+      </>
+      : <div>I'm saving your CPU. Please scroll.</div>
+      }
+    </Container>
     <Container ref={programmingContainerRef} title='Programming' id='programming'>
       {
       scrolledState === 'programming' ?

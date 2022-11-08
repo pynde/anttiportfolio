@@ -24,7 +24,7 @@ $ulRotate : 0deg;
                 // width: 100%;
                 @include app.flexStart;
                 flex-direction: column;
-                margin: 20px;
+                margin: 10px;
             }
             ul {
                 width: $radialMenuWidth;
@@ -79,22 +79,19 @@ $ulRotate : 0deg;
                 }
                 
             }
-            
-            
-            
     }
 
     .scrolled {
         transition: width 0.5s;
         position: fixed;
-        right: 0;
+        right: 20px;
         top: 0;
         width: fit-content;
         ul {
             background-color: transparent;
             height: 80vh;
             width: fit-content;
-            padding-right: 20px;
+            padding-right: 2px;
             display: grid;
             justify-content: center;
             grid-template-rows: repeat(6, 1fr);
