@@ -53,10 +53,6 @@ const setImageSize = () => {
   }
 }
 
-const checkLoadState = () => {
-
-}
-
 const unBlur = () => {
   console.log('loading');
   if(!!galleryRef.current) {

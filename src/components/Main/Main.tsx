@@ -13,6 +13,21 @@ import styles from './Main.module.scss';
 
 interface MainProps {}
 
+
+const SOUND = 'sound';
+const THREEDEE = 'threedee';
+const IMAGE = 'image';
+const EDUCATION = 'education';
+const PROGRAMMING = 'programming';
+const ABOUTME = 'aboutme';
+
+/**
+ * The main component of the application.
+ *
+ * This component contains the main content of the application. It is responsible for rendering
+ * the different sections of the application. It also manages the scroll position of the user
+ * and updates the `scrolledState` based on the user's position.
+ */
 const Main: FC<MainProps> = () => {
   
   const firstRenderRef = useRef<boolean>(true);
@@ -25,26 +40,39 @@ const Main: FC<MainProps> = () => {
   const educationContainerRef = useRef<HTMLDivElement>(null);
   const programmingContainerRef = useRef<HTMLDivElement>(null);
   const radialMenuRef = useRef<HTMLDivElement>(null);
-  const prevScrollRef = useRef<number>(0);
 
 
   // Show components based on scrolled user position 
   useEffect(() => {
-  checkScrolledState()
+    checkScrolledState()
   }, [scrollContext.scrolledY]);
 
+  /**
+   * Checks the scrolled state and updates the `scrolledState` based on the user's scroll position.
+   * It iterates through the container references and checks their position relative to the viewport.
+   * If a container is in the viewport, it updates the `scrolledState` with the container's ID.
+   */
   const checkScrolledState = () => {
     const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef];
     refs.forEach((ref) => {
       if(!!ref.current) {
-      if(ref.current.getBoundingClientRect().top < ref.current.offsetHeight / 2 && ref.current.getBoundingClientRect().bottom < ref.current.offsetHeight * 1.5 ) {
-        setScrolledState(ref.current.id);
-        console.log(ref.current.id);
+        if(ref.current.getBoundingClientRect().top < ref.current.offsetHeight / 2 && ref.current.getBoundingClientRect().bottom < ref.current.offsetHeight * 1.5 ) {
+          setScrolledState(ref.current.id);
+          console.log(ref.current.id);
+        }
       }
-    }
     })
   }
   
+  /**
+   * Scrolls the view to the specified element.
+   *
+   * @param elementString - The ID of the element to scroll into view.
+   *
+   * This function checks if all the container references are defined. If they are,
+   * it iterates through the references and scrolls the view to the element whose
+   * ID matches the provided `elementString`.
+   */
   const scrollToView = (elementString : string) => {  
       if(!!(soundContainerRef.current && threeDeeContainerRef.current && imageContainerRef.current && educationContainerRef.current)) {
         const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef];
@@ -60,8 +88,8 @@ const Main: FC<MainProps> = () => {
   return (  
   <div className={styles.Main}>
     { pathname === '/' ? <>
-    <RadialMenu scrollToView={e => scrollToView(e)} ref={radialMenuRef} />
-    <Container ref={soundContainerRef} title='Sound' id='sound'>
+    <RadialMenu active={scrolledState} scrollToView={e => scrollToView(e)} ref={radialMenuRef} />
+    <Container ref={soundContainerRef} id='sound'>
       { scrolledState === 'sound' ?
       <>
       <Texts id='sound'/>
@@ -70,8 +98,8 @@ const Main: FC<MainProps> = () => {
       : <div>I'm saving your CPU. Please scroll.</div>
       }
     </Container>
-    <Container ref={threeDeeContainerRef} title='3D' id='3d'>
-      { scrolledState === '3d' ?
+    <Container ref={threeDeeContainerRef} id='threedee'>
+      { scrolledState === 'threedee' ?
       <>
       <Texts id='3d'/>
       <ThreeDee/>
@@ -79,7 +107,7 @@ const Main: FC<MainProps> = () => {
       : <div>I'm saving your CPU. Please scroll.</div>
       }
     </Container>
-    <Container ref={imageContainerRef} title='Image' id='image'>
+    <Container ref={imageContainerRef} id='image'>
       {
       scrolledState === 'image' ?
       <>
@@ -89,7 +117,7 @@ const Main: FC<MainProps> = () => {
       : <div>I'm saving your CPU. Please scroll.</div>
       }
     </Container>
-    <Container ref={educationContainerRef} title='Education' id='education'>
+    <Container ref={educationContainerRef} id='education'>
       {
       scrolledState === 'education' ?
       <>
@@ -99,7 +127,7 @@ const Main: FC<MainProps> = () => {
       : <div>I'm saving your CPU. Please scroll.</div>
       }
     </Container>
-    <Container ref={programmingContainerRef} title='Programming' id='programming'>
+    <Container ref={programmingContainerRef} id='programming'>
       {
       scrolledState === 'programming' ?
       <>
@@ -111,7 +139,7 @@ const Main: FC<MainProps> = () => {
     </Container>
       
     {/*
-    <Container title='About me' id='about-me'>
+    <Container title='About me' id='aboutme'>
       <ProgressTile/>
     </Container> */}
     </>
