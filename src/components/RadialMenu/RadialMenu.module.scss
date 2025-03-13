@@ -76,6 +76,10 @@ $hamburgerSize: 40px;
         }
         .Hamburger {
             position: absolute;
+            border-radius: 100%;
+            backdrop-filter: blur(20px);
+            padding: 10px;
+            background-color: rgba(app.$darkBg, 0.1);
             right: 2rem;
             top: 2rem;
             width: $hamburgerSize;

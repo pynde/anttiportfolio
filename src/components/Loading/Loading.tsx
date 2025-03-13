@@ -6,7 +6,7 @@ interface LoadingProps {}
 const Loading: FC<LoadingProps> = () => (
   <div className={styles.Loading}>
     <div id={styles.moon}></div>
-    {/* <div id={styles.text}>Loading</div> */}
+    { <div id={styles.text}>Loading</div> }
   </div>
 );
 

@@ -10,6 +10,8 @@ import RadialMenu from '../RadialMenu/RadialMenu';
 import Texts from '../Texts/Texts';
 import ThreeDee from '../ThreeDee/ThreeDee';
 import styles from './Main.module.scss';
+import { log } from 'console';
+import Loading from '../Loading/Loading';
 
 interface MainProps {}
 
@@ -56,7 +58,7 @@ const Main: FC<MainProps> = () => {
     const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef];
     refs.forEach((ref) => {
       if(!!ref.current) {
-        if(ref.current.getBoundingClientRect().top < ref.current.offsetHeight / 2 && ref.current.getBoundingClientRect().bottom < ref.current.offsetHeight * 1.5 ) {
+        if(ref.current.getBoundingClientRect().top <= 200 && ref.current.getBoundingClientRect().top >= -200) {
           setScrolledState(ref.current.id);
           console.log(ref.current.id);
         }
@@ -84,58 +86,30 @@ const Main: FC<MainProps> = () => {
       }
   }
 
-
   return (  
   <div className={styles.Main}>
     { pathname === '/' ? <>
     <RadialMenu active={scrolledState} scrollToView={e => scrollToView(e)} ref={radialMenuRef} />
     <Container ref={soundContainerRef} id='sound'>
-      { scrolledState === 'sound' ?
-      <>
       <Texts id='sound'/>
-      <Aani/>
-      </>
-      : <div>I'm saving your CPU. Please scroll.</div>
-      }
+      { scrolledState === 'sound' ? <Aani/> : <Loading/> }
     </Container>
     <Container ref={threeDeeContainerRef} id='threedee'>
-      { scrolledState === 'threedee' ?
-      <>
       <Texts id='3d'/>
-      <ThreeDee/>
-      </>
-      : <div>I'm saving your CPU. Please scroll.</div>
-      }
+      { scrolledState === 'threedee' ? <ThreeDee/> : <Loading/> }
     </Container>
     <Container ref={imageContainerRef} id='image'>
-      {
-      scrolledState === 'image' ?
-      <>
       <Texts id='image' />
-      <ImageSlider/>
-      </>
-      : <div>I'm saving your CPU. Please scroll.</div>
-      }
+      { scrolledState === 'image' ? <ImageSlider/> : <Loading/> }
+
     </Container>
     <Container ref={educationContainerRef} id='education'>
-      {
-      scrolledState === 'education' ?
-      <>
       <Texts id='education'/>
-      <Education />
-      </>
-      : <div>I'm saving your CPU. Please scroll.</div>
-      }
+      { scrolledState === 'education' ? <Education /> : <Loading/> }
     </Container>
     <Container ref={programmingContainerRef} id='programming'>
-      {
-      scrolledState === 'programming' ?
-      <>
       <Texts id='programming'/>
-      <Programming/>
-      </>
-      : <div>I'm saving your CPU. Please scroll.</div>
-      }
+      { scrolledState === 'programming' ? <Programming/> : <Loading/> }
     </Container>
       
     {/*

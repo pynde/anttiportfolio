@@ -37,7 +37,7 @@ const ThreeDee: FC<ThreeDeeProps> = (props) => {
           { threeDeeItems[selectedItem] }
         </Canvas>
       </Suspense>
-      <button  onClick={selectThreeDee} type={'button'}>View another 3D object</button>
+      <button onClick={selectThreeDee} type={'button'}>View another 3D object</button>
   </div>
   )
 };

@@ -32,16 +32,16 @@ const RadialMenu: FC<RadialMenuProps & React.RefAttributes<HTMLDivElement>> =
      * @param {string} element - The identifier of the element to scroll to.
      */
     const scrollAndClose = (element: string) => {
-      props.scrollToView(element);
       setMenuVisible(false);
+      setTimeout(() => {
+        props.scrollToView(element);
+      }, 100);
+      
     };
 
     return (
       <div ref={_ref} className={styles.RadialMenuCont}>
         <div className={`${styles.RadialMenu}`} ref={radialMenuDiv}>
-          <h2>
-            Made with React, Sass, Affinity Designer, Blender and three.js.
-          </h2>
           <div className={styles.ListContainerDesktop}>
             <ul>
               <li
