@@ -78,7 +78,7 @@ const Main: FC<MainProps> = () => {
         const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef];
         refs.forEach(e => {
           if(e.current?.id == elementString ){
-              e.current.scrollIntoView();
+              e.current.scrollIntoView({ block: 'start' });
           }
         })
       }

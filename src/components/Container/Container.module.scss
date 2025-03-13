@@ -3,6 +3,9 @@
 $decorationContHeight : 80px;
 
 .Container {
+
+
+
     margin: 0;
     padding: 0;
     display: block;
@@ -15,13 +18,27 @@ $decorationContHeight : 80px;
         margin: 0;
     }
 
-    .gridCont {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        justify-items: center;
-        height: calc(100% - $decorationContHeight)
+    @media only screen and (min-width: 601px) {
+        min-height: 100vh;
+        overflow: visible;
+        .gridCont {
+            padding: 1rem 0 1rem 0;
+            grid-template-rows: 1fr 1fr;
+            align-items: center;
+            justify-items: center;
+            height: 100%;
+        }
     }
+
+    @media only screen and (max-width: 600px) {
+        .gridCont {
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            justify-items: center;
+            height: 100%;
+        }
+    }
+
     #decorationCont {
         @include app.flexCenter;
         height: $decorationContHeight;

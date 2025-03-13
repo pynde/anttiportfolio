@@ -6,7 +6,7 @@ interface MouseSvgProps {}
 
 const MouseSvg: FC<MouseSvgProps> = () => (
   <div className={styles.MouseSVG}>
-  <svg viewBox="0 0 200 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve">
+  <svg viewBox="0 0 200 100" width="100%" height='100%' version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve">
   <g transform="matrix(1,0,0,1,-555.75,-1620.19)">
         <g transform="matrix(1,0,0,1,-2714,1521.04)">
             <g id="mouseGroup" style={{fill: 'silver'}}>

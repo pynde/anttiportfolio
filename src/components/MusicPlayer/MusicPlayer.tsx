@@ -99,10 +99,10 @@ const MusicPlayer: FC<MusicPlayerProps> = (props: MusicPlayerProps) => {
       console.log('Fetching SoundCloud Widget API');
       if(!loaded && tries < 3 && !!widget.current) {
         widget.current.bind(SC.Widget.Events.READY, () => {
-        widget.current.getDuration((m: number) => setPlayTime(m));
-        widget.current.getCurrentSound((api_object: any) => setTitle(api_object['title']));
-        loaded = true;
-        setWidgetLoaded(true);
+          widget.current.getDuration((m: number) => setPlayTime(m));
+          widget.current.getCurrentSound((api_object: any) => setTitle(api_object['title']));
+          loaded = true;
+          setWidgetLoaded(true);
         })
       }
       else {

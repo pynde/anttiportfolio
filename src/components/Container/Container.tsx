@@ -12,16 +12,6 @@ const Container : FC<ContainerProps & React.RefAttributes<HTMLDivElement>> = Rea
 
   return(
     <div className={`${styles.Container}`} id={props.id} ref={ref}>
-      <div id={styles.decorationCont}>
-        { props.title &&
-        (<>
-          <div className={styles.decoration}></div>
-            <h1>{ props.title }</h1>
-          <div className={styles.decoration}></div>
-        </>
-        )}
-        
-      </div>
       <div className={styles.gridCont}>
           { props.children }
       </div>
