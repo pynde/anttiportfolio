@@ -1,51 +1,42 @@
-import React, { FC, useContext, useEffect, useRef, useState } from "react";
-import { ScrollContext } from "../../App";
+import React, { FC, useContext, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { ScrollContext, SelectionContext } from "../../App";
 import styles from "./RadialMenu.module.scss";
 import clsx from "clsx";
 import { Bars3Icon } from '@heroicons/react/24/outline' 
 
 interface RadialMenuProps {
-  scrollToView: (element: string) => void;
   active: string;
 }
 
 const RadialMenu: FC<RadialMenuProps & React.RefAttributes<HTMLDivElement>> =
   React.forwardRef<HTMLDivElement, RadialMenuProps>((props, _ref) => {
-    const radialMenuDiv = useRef<HTMLDivElement>(null);
-    const scrolledWindow = useContext(ScrollContext);
-    const [textVisible, setTextVisible] = useState<string>("visible");
     const [menuVisible, setMenuVisible] = useState<boolean>(true);
-
-    useEffect(() => {
-      if (!!radialMenuDiv.current?.offsetHeight) {
-        if (scrolledWindow.scrolledY >= 5) {
-          setTextVisible("none");
-        } else if (scrolledWindow.scrolledY < 1) {
-          setTextVisible("block");
-        }
-      }
-    }, [scrolledWindow.scrolledY]);
+    const thisRef = useRef<HTMLInputElement>(null);
+    const selectionContext = useContext(SelectionContext);
+    useImperativeHandle(_ref, () => thisRef.current as HTMLInputElement);
 
     /**
      * Scrolls to the specified element and closes the radial menu.
      *
      * @param {string} element - The identifier of the element to scroll to.
      */
-    const scrollAndClose = (element: string) => {
+    const selectAndClose = (element: string) => {
       setMenuVisible(false);
       setTimeout(() => {
-        props.scrollToView(element);
+        selectionContext.setSelectedAsString(element);
       }, 100);
-      
     };
 
+    const setSelected = (element: string) => {
+      selectionContext.setSelectedAsString(element); 
+    }
+
     return (
-      <div ref={_ref} className={styles.RadialMenuCont}>
-        <div className={`${styles.RadialMenu}`} ref={radialMenuDiv}>
+      <div ref={_ref} className={styles.RadialMenu}>
           <div className={styles.ListContainerDesktop}>
             <ul>
               <li
-                onClick={() => props.scrollToView("sound")}
+                onClick={() => setSelected("sound")}
                 className={clsx({ [styles.active]: props.active === "sound" })}
               >
                 <div>Sound</div>
@@ -54,28 +45,28 @@ const RadialMenu: FC<RadialMenuProps & React.RefAttributes<HTMLDivElement>> =
                   alt="Sound icon"
                 />
               </li>
-              <li onClick={() => props.scrollToView("threedee")}>
+              <li onClick={() => setSelected("threedee")}>
                 <div>3D</div>
                 <img
                   src={`${process.env.PUBLIC_URL}/images/3D.svg`}
                   alt="3D icon"
                 />
               </li>
-              <li onClick={() => props.scrollToView("image")}>
+              <li onClick={() => setSelected("image")}>
                 <div>Image</div>
                 <img
                   src={`${process.env.PUBLIC_URL}/images/kuva.svg`}
                   alt="Image icon"
                 />
               </li>
-              <li onClick={() => props.scrollToView("education")}>
+              <li onClick={() => setSelected("education")}>
                 <div>Education</div>
                 <img
                   src={`${process.env.PUBLIC_URL}/images/koulutus.svg`}
                   alt="Education icon"
                 />
               </li>
-              <li onClick={() => props.scrollToView("programming")}>
+              <li onClick={() => setSelected("programming")}>
                 <div>Programming</div>
                 <img
                   src={`${process.env.PUBLIC_URL}/images/ohjelmointi.svg`}
@@ -83,7 +74,7 @@ const RadialMenu: FC<RadialMenuProps & React.RefAttributes<HTMLDivElement>> =
                 />
               </li>
               <li
-                onClick={() => props.scrollToView("about-me")}
+                onClick={() => setSelected("aboutme")}
                 style={{ opacity: 0.5 }}
               >
                 <div>About me</div>
@@ -96,9 +87,9 @@ const RadialMenu: FC<RadialMenuProps & React.RefAttributes<HTMLDivElement>> =
           </div>
           <div className={styles.ListContainerMobile}>
             <Bars3Icon className={styles.Hamburger} onClick={() => setMenuVisible(true)}/>
-            <ul className={clsx({[styles.active]: menuVisible})}>
+            <ul className={clsx({[styles.FullScreenMenu]: menuVisible})}>
                 <li
-                onClick={() => scrollAndClose("sound")}
+                onClick={() => selectAndClose("sound")}
                 className={clsx({ [styles.active]: props.active === "sound" })}
                 >
                 <div>Sound</div>
@@ -107,28 +98,28 @@ const RadialMenu: FC<RadialMenuProps & React.RefAttributes<HTMLDivElement>> =
                   alt="Sound icon"
                 />
                 </li>
-                <li onClick={() => scrollAndClose("threedee")}>
+                <li onClick={() => selectAndClose("threedee")}>
                 <div>3D</div>
                 <img
                   src={`${process.env.PUBLIC_URL}/images/3D.svg`}
                   alt="3D icon"
                 />
                 </li>
-                <li onClick={() => scrollAndClose("image")}>
+                <li onClick={() => selectAndClose("image")}>
                 <div>Image</div>
                 <img
                   src={`${process.env.PUBLIC_URL}/images/kuva.svg`}
                   alt="Image icon"
                 />
                 </li>
-                <li onClick={() => scrollAndClose("education")}>
+                <li onClick={() => selectAndClose("education")}>
                 <div>Education</div>
                 <img
                   src={`${process.env.PUBLIC_URL}/images/koulutus.svg`}
                   alt="Education icon"
                 />
                 </li>
-                <li onClick={() => scrollAndClose("programming")}>
+                <li onClick={() => selectAndClose("programming")}>
                 <div>Programming</div>
                 <img
                   src={`${process.env.PUBLIC_URL}/images/ohjelmointi.svg`}
@@ -136,7 +127,7 @@ const RadialMenu: FC<RadialMenuProps & React.RefAttributes<HTMLDivElement>> =
                 />
                 </li>
                 <li
-                onClick={() => scrollAndClose("about-me")}
+                onClick={() => selectAndClose("about-me")}
                 style={{ opacity: 0.5 }}
                 >
                 <div>About me</div>
@@ -147,7 +138,6 @@ const RadialMenu: FC<RadialMenuProps & React.RefAttributes<HTMLDivElement>> =
                 </li>
             </ul>
           </div>
-        </div>
       </div>
     );
   });

@@ -7,24 +7,33 @@ interface IScrollContext {
   scrolledY : number;
 }
 
+interface ISelectionContext {
+  selectedAsString: string;
+  setSelectedAsString: (selectedAsString: string) => void;
+}
+
 export const ScrollContext= createContext<IScrollContext>({scrolledY : 0});
+export const SelectionContext = createContext<ISelectionContext>({ selectedAsString: '', setSelectedAsString: () => {} });
 
 function App() {
   const [scrollY, setScrollY] = useState<number>(0);
+  const [_selectedAsString, _setSelectedAsString] = useState<ISelectionContext['selectedAsString']>('');
   const appRef = useRef<HTMLDivElement>(null);
   const setScrolledHeight = () =>{
     if(!!appRef.current)
     setScrollY(appRef.current.scrollTop);
   }
 
+
   return (
-    <ScrollContext.Provider value={{scrolledY: scrollY}}>
-    <div className="App" onScroll={setScrolledHeight} ref={appRef}>
-      <Nav/>
-      <Main>
-      </Main>
-    </div>
-    </ScrollContext.Provider>
+    <SelectionContext.Provider value={{ selectedAsString: _selectedAsString, setSelectedAsString: _setSelectedAsString }}>
+      <ScrollContext.Provider value={{scrolledY: scrollY}}>
+      <div className="App" onScroll={setScrolledHeight} ref={appRef}>
+        <Nav/>
+        <Main/>
+      </div>
+      </ScrollContext.Provider>
+    </SelectionContext.Provider>
   );
 }
 

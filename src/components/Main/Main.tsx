@@ -1,6 +1,6 @@
 import React, { createRef, FC, ReactElement, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { Outlet, Pathname, useLocation } from 'react-router-dom';
-import { ScrollContext } from '../../App';
+import { ScrollContext, SelectionContext } from '../../App';
 import Aani from '../Aani/Aani';
 import Container from '../Container/Container';
 import Education from '../Education/Education';
@@ -10,7 +10,6 @@ import RadialMenu from '../RadialMenu/RadialMenu';
 import Texts from '../Texts/Texts';
 import ThreeDee from '../ThreeDee/ThreeDee';
 import styles from './Main.module.scss';
-import { log } from 'console';
 import Loading from '../Loading/Loading';
 
 interface MainProps {}
@@ -32,7 +31,6 @@ const ABOUTME = 'aboutme';
  */
 const Main: FC<MainProps> = () => {
   
-  const firstRenderRef = useRef<boolean>(true);
   const { pathname } = useLocation();
   const scrollContext = useContext(ScrollContext);
   const [scrolledState, setScrolledState] = useState<string>('');
@@ -41,55 +39,44 @@ const Main: FC<MainProps> = () => {
   const imageContainerRef = useRef<HTMLDivElement>(null);
   const educationContainerRef = useRef<HTMLDivElement>(null);
   const programmingContainerRef = useRef<HTMLDivElement>(null);
-  const radialMenuRef = useRef<HTMLDivElement>(null);
+  const selectionContext = useContext(SelectionContext);
 
-
-  // Show components based on scrolled user position 
-  useEffect(() => {
-    checkScrolledState()
-  }, [scrollContext.scrolledY]);
-
-  /**
-   * Checks the scrolled state and updates the `scrolledState` based on the user's scroll position.
-   * It iterates through the container references and checks their position relative to the viewport.
-   * If a container is in the viewport, it updates the `scrolledState` with the container's ID.
-   */
-  const checkScrolledState = () => {
-    const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef];
-    refs.forEach((ref) => {
-      if(!!ref.current) {
-        if(ref.current.getBoundingClientRect().top <= 200 && ref.current.getBoundingClientRect().top >= -200) {
-          setScrolledState(ref.current.id);
-          console.log(ref.current.id);
+  useEffect(() => {  
+    if(!!(soundContainerRef.current && threeDeeContainerRef.current && imageContainerRef.current && educationContainerRef.current)) {
+      const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef];
+      refs.forEach(e => {
+        if(e.current?.id == selectionContext.selectedAsString ){
+            e.current.scrollIntoView({ block: 'start' });
         }
-      }
-    })
-  }
+      })
+    }
+  }, [selectionContext.selectedAsString]);
+
+     // Show components based on scrolled user position 
+     useEffect(() => {
+      checkScrolledState()
+    }, [scrollContext.scrolledY]);
   
-  /**
-   * Scrolls the view to the specified element.
-   *
-   * @param elementString - The ID of the element to scroll into view.
-   *
-   * This function checks if all the container references are defined. If they are,
-   * it iterates through the references and scrolls the view to the element whose
-   * ID matches the provided `elementString`.
-   */
-  const scrollToView = (elementString : string) => {  
-      if(!!(soundContainerRef.current && threeDeeContainerRef.current && imageContainerRef.current && educationContainerRef.current)) {
-        const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef];
-        refs.forEach(e => {
-          if(e.current?.id == elementString ){
-              e.current.scrollIntoView({ block: 'start' });
+    /**
+     * Checks the scrolled state and updates the `scrolledState` based on the user's scroll position.
+     * It iterates through the container references and checks their position relative to the viewport.
+     * If a container is in the viewport, it updates the `scrolledState` with the container's ID.
+     */
+    const checkScrolledState = () => {
+      const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef];
+      refs.forEach((ref) => {
+        if(!!ref.current) {
+          if(ref.current.getBoundingClientRect().top <= 200 && ref.current.getBoundingClientRect().top >= -200) {
+            setScrolledState(ref.current.id);
+            console.log(ref.current.id);
           }
-        })
-      }
-  }
+        }
+      })
+    }
 
   return (  
   <div className={styles.Main}>
     { pathname === '/' ? <>
-    <RadialMenu active={scrolledState} scrollToView={e => scrollToView(e)} ref={radialMenuRef} />
     <Container ref={soundContainerRef} id='sound'>
       <Texts id='sound'/>
       { scrolledState === 'sound' ? <Aani/> : <Loading/> }

@@ -7,61 +7,62 @@ $liHeight : 40px;
 $ulRotate : 0deg;
 $hamburgerSize: 40px;
 
-.RadialMenuCont {
-    position: sticky;
-    top: 0;
+.RadialMenu {
     z-index: 10;
-    @media only screen and (min-width: 601px) {
-    
-    .ListContainerMobile {
-        display: none;
-    }
-    
-    .ListContainerDesktop {
-        ul {
-            @include app.flexCenter;
-            gap: 10px;
-            margin: 0;
-            li {
-                width: fit-content;
-                position: relative;
-                height: $liHeight;
-                list-style: none;
-                padding: 1rem;
-                border: app.$primaryBorderRadius solid app.$primaryElement;
-                border-width: 0 0 0.5px 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                background-color: app.$lightBg;
-                cursor:pointer;
-                div {
-                    display: none;
-                }
-                &:hover {
-                    img {
-                       filter: invert(0.5) sepia(1) saturate(5) hue-rotate(10deg);
-                    }
-                    div {
-                        display: block;
-                        user-select: none;
-                    }
-                    
-                }
-                img {
-                    width: $liWidth;
+    @media only screen and (min-width: app.$breakpointDesktop) {
+        position: fixed;
+        top: calc(nav.$navHeight -  nav.$navHeight / 1.125);
+        right: 25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        .ListContainerMobile {
+            display: none;
+        }
+        .ListContainerDesktop {
+            ul {
+                @include app.flexCenter;
+                gap: 10px;
+                padding: 0;
+                margin: 0;
+                li {
+                    width: fit-content;
+                    position: relative;
                     height: $liHeight;
-                    color: green;
-                    filter: invert(1);
+                    list-style: none;
+                    padding: 1rem;
+                    border: app.$primaryBorderRadius solid app.$primaryElement;
+                    border-width: 0 0 0.5px 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: rgba(app.$lightBg, 0.8);
+                    backdrop-filter: blur(5px);
+                    cursor:pointer;
+                    div {
+                        display: none;
+                    }
+                    &:hover {
+                        img {
+                        filter: invert(0.5) sepia(1) saturate(5) hue-rotate(10deg);
+                        }
+                        div {
+                            display: block;
+                            user-select: none;
+                        }
+                        
+                    }
+                    img {
+                        width: $liWidth;
+                        height: $liHeight;
+                        color: green;
+                        filter: invert(1);
+                    }
                 }
-                
-
-            }
             .active {
-                
                 background-color: app.$primaryElement;
-                
                 div {
                     display: block;
                     user-select: none;
@@ -70,18 +71,19 @@ $hamburgerSize: 40px;
         }
     }
 }
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: app.$breakpointMobile) {
+        height: 100%;
         .ListContainerDesktop {
             display: none;
         }
         .Hamburger {
-            position: absolute;
+            position: fixed;
             border-radius: 100%;
             backdrop-filter: blur(20px);
             padding: 10px;
             background-color: rgba(app.$darkBg, 0.1);
             right: 2rem;
-            top: 2rem;
+            top: nav.$navHeight - nav.$navHeight / 1.125;
             width: $hamburgerSize;
             height: $hamburgerSize;
         }
@@ -91,17 +93,19 @@ $hamburgerSize: 40px;
         justify-content: center;
         align-items: center;
         align-self: flex-end;
-
+        height: 100%;
         ul {
             display: none;
         }
-        .active {
+        .FullScreenMenu {
             margin: 0;
             padding: 0;
             list-style: none;
             width: 100vw;
-            height: 100vh;
+            height: 100%;
             display: flex;
+            position: fixed;
+            top:0;
             background-color: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
             flex-direction: column;

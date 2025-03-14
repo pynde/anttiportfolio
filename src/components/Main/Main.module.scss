@@ -10,7 +10,7 @@ justify-content: flex-start;
 flex-direction: column;
 text-align: center;
 position: relative;
-
+height: 100vh;
 a {
     background-color: white;
     color: black;
@@ -20,10 +20,6 @@ a {
         background-color: app.$primaryElement;
         color: white;
     }
-}
-.scrolled {
-    height: 50vh;
-    transition: height 0.5s;
 }
 
 }

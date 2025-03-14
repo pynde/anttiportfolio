@@ -1,8 +1,18 @@
 @use '../../App.scss' as app;
 
 .Education {
-    img {
-        width: 60%;
-        height: 60%;
+    @media only screen and (min-width: app.$breakpointDesktop) {
+        img {
+            width: 60%;
+            height: 60%;
+        }
     }
+    @media only screen and (max-width: app.$breakpointMobile) {
+        img {
+            height: 60%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    
 }
