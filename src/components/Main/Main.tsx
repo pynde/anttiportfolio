@@ -11,16 +11,17 @@ import Texts from '../Texts/Texts';
 import ThreeDee from '../ThreeDee/ThreeDee';
 import styles from './Main.module.scss';
 import Loading from '../Loading/Loading';
+import Aboutme from '../Aboutme/Aboutme';
 
 interface MainProps {}
 
 
-const SOUND = 'sound';
-const THREEDEE = 'threedee';
-const IMAGE = 'image';
-const EDUCATION = 'education';
-const PROGRAMMING = 'programming';
-const ABOUTME = 'aboutme';
+export const SOUND = 'sound';
+export const THREEDEE = 'threedee';
+export const IMAGE = 'image';
+export const EDUCATION = 'education';
+export const PROGRAMMING = 'programming';
+export const ABOUTME = 'aboutme';
 
 /**
  * The main component of the application.
@@ -39,11 +40,12 @@ const Main: FC<MainProps> = () => {
   const imageContainerRef = useRef<HTMLDivElement>(null);
   const educationContainerRef = useRef<HTMLDivElement>(null);
   const programmingContainerRef = useRef<HTMLDivElement>(null);
+  const aboutMeRef = useRef<HTMLDivElement>(null);
   const selectionContext = useContext(SelectionContext);
 
   useEffect(() => {  
-    if(!!(soundContainerRef.current && threeDeeContainerRef.current && imageContainerRef.current && educationContainerRef.current)) {
-      const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef];
+    if(!!(soundContainerRef.current && threeDeeContainerRef.current && imageContainerRef.current && educationContainerRef.current && aboutMeRef.current)) {
+      const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef, aboutMeRef];
       refs.forEach(e => {
         if(e.current?.id == selectionContext.selectedAsString ){
             e.current.scrollIntoView({ block: 'start' });
@@ -63,12 +65,11 @@ const Main: FC<MainProps> = () => {
      * If a container is in the viewport, it updates the `scrolledState` with the container's ID.
      */
     const checkScrolledState = () => {
-      const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef];
+      const refs = [soundContainerRef, threeDeeContainerRef, imageContainerRef, educationContainerRef, programmingContainerRef, aboutMeRef];
       refs.forEach((ref) => {
         if(!!ref.current) {
           if(ref.current.getBoundingClientRect().top <= 200 && ref.current.getBoundingClientRect().top >= -200) {
-            setScrolledState(ref.current.id);
-            console.log(ref.current.id);
+            scrollContext.setActiveElementAsString(ref.current.id);
           }
         }
       })
@@ -76,37 +77,34 @@ const Main: FC<MainProps> = () => {
 
   return (  
   <div className={styles.Main}>
-    { pathname === '/' ? <>
-    <Container ref={soundContainerRef} id='sound'>
-      <Texts id='sound'/>
-      { scrolledState === 'sound' ? <Aani/> : <Loading/> }
-    </Container>
-    <Container ref={threeDeeContainerRef} id='threedee'>
-      <Texts id='3d'/>
-      { scrolledState === 'threedee' ? <ThreeDee/> : <Loading/> }
-    </Container>
-    <Container ref={imageContainerRef} id='image'>
-      <Texts id='image' />
-      { scrolledState === 'image' ? <ImageSlider/> : <Loading/> }
-
-    </Container>
-    <Container ref={educationContainerRef} id='education'>
-      <Texts id='education'/>
-      { scrolledState === 'education' ? <Education /> : <Loading/> }
-    </Container>
-    <Container ref={programmingContainerRef} id='programming'>
-      <Texts id='programming'/>
-      { scrolledState === 'programming' ? <Programming/> : <Loading/> }
-    </Container>
-      
-    {/*
-    <Container title='About me' id='aboutme'>
-      <ProgressTile/>
-    </Container> */}
+    <>
+      <Container ref={aboutMeRef} id={ABOUTME}>
+        <Texts id={ABOUTME}/>
+        { scrollContext.activeElementAsString === ABOUTME ? <Aboutme/> : <Loading/> }
+      </Container>
+      <Container ref={soundContainerRef} id={SOUND}>
+        <Texts id={SOUND}/>
+        { scrollContext.activeElementAsString === SOUND ? <Aani/> : <Loading/> }
+      </Container>
+      <Container ref={threeDeeContainerRef} id={THREEDEE}>
+        <Texts id={THREEDEE}/>
+        { scrollContext.activeElementAsString === THREEDEE ? <ThreeDee/> : <Loading/> }
+      </Container>
+      <Container ref={imageContainerRef} id={IMAGE}>
+        <Texts id={IMAGE} />
+        { scrollContext.activeElementAsString === IMAGE ? <ImageSlider/> : <Loading/> }
+      </Container>
+      <Container ref={educationContainerRef} id={EDUCATION}>
+        <Texts id={EDUCATION}/>
+        { scrollContext.activeElementAsString === EDUCATION ? <Education /> : <Loading/> }
+      </Container>
+      <Container ref={programmingContainerRef} id={PROGRAMMING}>
+        <Texts id={PROGRAMMING}/>
+        { scrollContext.activeElementAsString === PROGRAMMING ? <Programming/> : <Loading/> }
+      </Container>
     </>
     :
     <Outlet/>
-    }
   </div>
   )
 };

@@ -2,7 +2,8 @@ import React, { FC, useContext, useEffect, useImperativeHandle, useRef, useState
 import { ScrollContext, SelectionContext } from "../../App";
 import styles from "./RadialMenu.module.scss";
 import clsx from "clsx";
-import { Bars3Icon } from '@heroicons/react/24/outline' 
+import { Bars3Icon } from '@heroicons/react/24/outline'
+import { ABOUTME, PROGRAMMING, SOUND, THREEDEE, IMAGE, EDUCATION } from "../Main/Main";
 
 interface RadialMenuProps {
   active: string;
@@ -27,6 +28,10 @@ const RadialMenu: FC<RadialMenuProps & React.RefAttributes<HTMLDivElement>> =
       }, 100);
     };
 
+    useEffect(() => {
+      console.log('selected', selectionContext.selectedAsString);
+    }, [selectionContext.selectedAsString]);
+
     const setSelected = (element: string) => {
       selectionContext.setSelectedAsString(element); 
     }
@@ -35,53 +40,65 @@ const RadialMenu: FC<RadialMenuProps & React.RefAttributes<HTMLDivElement>> =
       <div ref={_ref} className={styles.RadialMenu}>
           <div className={styles.ListContainerDesktop}>
             <ul>
-              <li
-                onClick={() => setSelected("sound")}
-                className={clsx({ [styles.active]: props.active === "sound" })}
+              <li 
+              onClick={() => setSelected(ABOUTME)}
+              className={clsx({ [styles.active]: props.active === ABOUTME })}
               >
-                <div>Sound</div>
-                <img
-                  src={`${process.env.PUBLIC_URL}/images/aani.svg`}
-                  alt="Sound icon"
-                />
-              </li>
-              <li onClick={() => setSelected("threedee")}>
-                <div>3D</div>
-                <img
-                  src={`${process.env.PUBLIC_URL}/images/3D.svg`}
-                  alt="3D icon"
-                />
-              </li>
-              <li onClick={() => setSelected("image")}>
-                <div>Image</div>
-                <img
-                  src={`${process.env.PUBLIC_URL}/images/kuva.svg`}
-                  alt="Image icon"
-                />
-              </li>
-              <li onClick={() => setSelected("education")}>
-                <div>Education</div>
-                <img
-                  src={`${process.env.PUBLIC_URL}/images/koulutus.svg`}
-                  alt="Education icon"
-                />
-              </li>
-              <li onClick={() => setSelected("programming")}>
-                <div>Programming</div>
-                <img
-                  src={`${process.env.PUBLIC_URL}/images/ohjelmointi.svg`}
-                  alt="Programming icon"
-                />
+              <div>About me</div>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/viestinta.svg`}
+                alt="Aboutme icon"
+              />
               </li>
               <li
-                onClick={() => setSelected("aboutme")}
-                style={{ opacity: 0.5 }}
+              onClick={() => setSelected(SOUND)}
+              className={clsx({ [styles.active]: props.active === SOUND })}
               >
-                <div>About me</div>
-                <img
-                  src={`${process.env.PUBLIC_URL}/images/viestinta.svg`}
-                  alt="Communications icon"
-                />
+              <div>Sound</div>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/aani.svg`}
+                alt="Sound icon"
+              />
+              </li>
+              <li 
+              onClick={() => setSelected(THREEDEE)}
+              className={clsx({ [styles.active]: props.active === THREEDEE })}
+              >
+              <div>3D</div>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/3D.svg`}
+                alt="3D icon"
+              />
+              </li>
+              <li 
+              onClick={() => setSelected(IMAGE)}
+              className={clsx({ [styles.active]: props.active === IMAGE })}
+              >
+              <div>Image</div>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/kuva.svg`}
+                alt="Image icon"
+              />
+              </li>
+              <li 
+              onClick={() => setSelected(EDUCATION)}
+              className={clsx({ [styles.active]: props.active === EDUCATION })}
+              >
+              <div>Education</div>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/koulutus.svg`}
+                alt="Education icon"
+              />
+              </li>
+              <li 
+              onClick={() => setSelected(PROGRAMMING)}
+              className={clsx({ [styles.active]: props.active === PROGRAMMING })}
+              >
+              <div>Programming</div>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/ohjelmointi.svg`}
+                alt="Programming icon"
+              />
               </li>
             </ul>
           </div>
@@ -89,8 +106,17 @@ const RadialMenu: FC<RadialMenuProps & React.RefAttributes<HTMLDivElement>> =
             <Bars3Icon className={styles.Hamburger} onClick={() => setMenuVisible(true)}/>
             <ul className={clsx({[styles.FullScreenMenu]: menuVisible})}>
                 <li
-                onClick={() => selectAndClose("sound")}
-                className={clsx({ [styles.active]: props.active === "sound" })}
+                onClick={() => selectAndClose(ABOUTME)}
+                >
+                <div>About me</div>
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/viestinta.svg`}
+                  alt="Communications icon"
+                />
+                </li>
+                <li
+                onClick={() => selectAndClose(SOUND)}
+                className={clsx({ [styles.active]: props.active === SOUND })}
                 >
                 <div>Sound</div>
                 <img
@@ -98,42 +124,32 @@ const RadialMenu: FC<RadialMenuProps & React.RefAttributes<HTMLDivElement>> =
                   alt="Sound icon"
                 />
                 </li>
-                <li onClick={() => selectAndClose("threedee")}>
+                <li onClick={() => selectAndClose(THREEDEE)}>
                 <div>3D</div>
                 <img
                   src={`${process.env.PUBLIC_URL}/images/3D.svg`}
                   alt="3D icon"
                 />
                 </li>
-                <li onClick={() => selectAndClose("image")}>
+                <li onClick={() => selectAndClose(IMAGE)}>
                 <div>Image</div>
                 <img
                   src={`${process.env.PUBLIC_URL}/images/kuva.svg`}
                   alt="Image icon"
                 />
                 </li>
-                <li onClick={() => selectAndClose("education")}>
+                <li onClick={() => selectAndClose(EDUCATION)}>
                 <div>Education</div>
                 <img
                   src={`${process.env.PUBLIC_URL}/images/koulutus.svg`}
                   alt="Education icon"
                 />
                 </li>
-                <li onClick={() => selectAndClose("programming")}>
+                <li onClick={() => selectAndClose(PROGRAMMING)}>
                 <div>Programming</div>
                 <img
                   src={`${process.env.PUBLIC_URL}/images/ohjelmointi.svg`}
                   alt="Programming icon"
-                />
-                </li>
-                <li
-                onClick={() => selectAndClose("about-me")}
-                style={{ opacity: 0.5 }}
-                >
-                <div>About me</div>
-                <img
-                  src={`${process.env.PUBLIC_URL}/images/viestinta.svg`}
-                  alt="Communications icon"
                 />
                 </li>
             </ul>

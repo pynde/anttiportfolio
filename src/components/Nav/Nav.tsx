@@ -3,21 +3,12 @@ import { Link } from 'react-router-dom';
 import styles from './Nav.module.scss';
 import { ScrollContext } from '../../App';
 import RadialMenu from '../RadialMenu/RadialMenu';
+import { SelectionContext } from '../../App';
 
 interface NavProps {}
 
 const Nav: FC<NavProps> = () => {
-
-    const scrollContext = useContext(ScrollContext);
-    const [scrolledState, setScrolledState] = useState<string>('');
-    const soundContainerRef = useRef<HTMLDivElement>(null);
-    const threeDeeContainerRef = useRef<HTMLDivElement>(null);
-    const imageContainerRef = useRef<HTMLDivElement>(null);
-    const educationContainerRef = useRef<HTMLDivElement>(null);
-    const programmingContainerRef = useRef<HTMLDivElement>(null);
-
-
-
+  const scrollContext = useContext(ScrollContext);
   return (
   <div className={styles.Nav}>
     <Link to='/'>
@@ -26,7 +17,7 @@ const Nav: FC<NavProps> = () => {
         <div id="headertext">Antti Pynn&ouml;nen</div>
     </div>
     </Link>
-    <RadialMenu active={scrolledState} />
+    <RadialMenu active={scrollContext.activeElementAsString} />
   </div>
   )
 };

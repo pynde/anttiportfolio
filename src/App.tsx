@@ -5,6 +5,8 @@ import Nav from './components/Nav/Nav';
 
 interface IScrollContext {
   scrolledY : number;
+  activeElementAsString: string;
+  setActiveElementAsString: (activeElementAsString: string) => void;
 }
 
 interface ISelectionContext {
@@ -12,11 +14,12 @@ interface ISelectionContext {
   setSelectedAsString: (selectedAsString: string) => void;
 }
 
-export const ScrollContext= createContext<IScrollContext>({scrolledY : 0});
+export const ScrollContext= createContext<IScrollContext>({scrolledY : 0, activeElementAsString: '', setActiveElementAsString: () => {} });
 export const SelectionContext = createContext<ISelectionContext>({ selectedAsString: '', setSelectedAsString: () => {} });
 
 function App() {
   const [scrollY, setScrollY] = useState<number>(0);
+  const [_activeElementAsString, _setActiveElementAsString] = useState<string>('');
   const [_selectedAsString, _setSelectedAsString] = useState<ISelectionContext['selectedAsString']>('');
   const appRef = useRef<HTMLDivElement>(null);
   const setScrolledHeight = () =>{
@@ -27,7 +30,7 @@ function App() {
 
   return (
     <SelectionContext.Provider value={{ selectedAsString: _selectedAsString, setSelectedAsString: _setSelectedAsString }}>
-      <ScrollContext.Provider value={{scrolledY: scrollY}}>
+      <ScrollContext.Provider value={{scrolledY: scrollY, activeElementAsString: _activeElementAsString, setActiveElementAsString: _setActiveElementAsString}}>
       <div className="App" onScroll={setScrolledHeight} ref={appRef}>
         <Nav/>
         <Main/>

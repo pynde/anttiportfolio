@@ -14,8 +14,8 @@ $dropShadow : drop-shadow(1px 1px 5px black);
 $boxShadow : 0 0 10px white;
 $primaryBorderRadius: 1em;
 
-$breakpointDesktop: 769px;
-$breakpointMobile: 768px;
+$breakpointDesktop: 1081px;
+$breakpointMobile: 1080px;
 
 @mixin redHighlight($opacity) {
   background-color : rgba($redColor, $opacity);
