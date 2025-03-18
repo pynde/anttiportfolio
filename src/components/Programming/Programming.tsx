@@ -5,7 +5,7 @@ interface ProgrammingProps {}
 
 const Programming: FC<ProgrammingProps> = () => (
   <div className={styles.Programming}>
-    Programming Component
+    <a href="https://github.com/pynde/">Check out my projects at GitHub</a>
   </div>
 );
 

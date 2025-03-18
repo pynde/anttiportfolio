@@ -5,7 +5,7 @@ interface AboutmeProps {}
 
 const Aboutme: FC<AboutmeProps> = () => (
   <div className={styles.Aboutme}>
-    ME
+    <img src={`${process.env.PUBLIC_URL}/images/cv_kuva_pieni.png`}></img>
   </div>
 );
 
